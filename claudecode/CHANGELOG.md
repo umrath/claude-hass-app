@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.64] - 2026-05-02
+
+### Changed
+- Updated repository metadata: name to "Claude Code Add-on", URL and maintainer to umrath
+
 ## [1.2.63] - 2026-02-23
 
 ### Fixed
