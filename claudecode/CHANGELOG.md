@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.71] - 2026-05-02
+
+### Security
+- Removed `docker_api: true` — Docker socket access is not needed for Claude Code; `docker-cli` package removed from image accordingly
+- Changed `full_access: true` to `full_access: false` — explicit `map:` entries and `uart: true` already cover all required access
+- Added `FONT_SIZE` integer validation and quoting in startup script to harden against unexpected values
+
 ## [1.2.70] - 2026-05-02
 
 ### Changed

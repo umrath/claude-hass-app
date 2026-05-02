@@ -22,8 +22,7 @@ auth_api: true
 hassio_api: true
 hassio_role: manager
 uart: true
-docker_api: true
-full_access: true
+full_access: false
 map:
   - homeassistant_config:rw
   - ssl:ro

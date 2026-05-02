@@ -39,7 +39,6 @@ RUN apk add --no-cache \
     ripgrep \
     p7zip \
     socat \
-    docker-cli \
     && update-ca-certificates
 
 # Install ttyd static binary (avoids libwebsockets issues)
@@ -210,6 +209,7 @@ CMD ["/bin/bash", "-c", "\
   if [ ! -L /root/.config/claude-code ]; then rm -rf /root/.config/claude-code; ln -s $PERSIST_DIR/config /root/.config/claude-code; fi && \
   if [ ! -L /root/.claude.json ]; then touch $PERSIST_DIR/.claude.json; rm -f /root/.claude.json; ln -s $PERSIST_DIR/.claude.json /root/.claude.json; fi && \
   FONT_SIZE=$(jq -r '.terminal_font_size // 14' /data/options.json) && \
+  case $FONT_SIZE in *[!0-9]*|'') FONT_SIZE=14;; esac && \
   THEME=$(jq -r '.terminal_theme // \"dark\"' /data/options.json) && \
   SESSION_PERSIST=$(jq -r '.session_persistence // true' /data/options.json) && \
   ENABLE_MCP=$(jq -r '.enable_mcp // true' /data/options.json) && \
@@ -241,7 +241,7 @@ CMD ["/bin/bash", "-c", "\
   fi && \
   cd /homeassistant && \
   exec ttyd --port 7681 --writable --ping-interval 30 --max-clients 5 \
-    -t fontSize=$FONT_SIZE \
+    -t \"fontSize=$FONT_SIZE\" \
     -t fontFamily=Monaco,Consolas,monospace \
     -t scrollback=20000 \
     -t \"theme=$COLORS\" \
