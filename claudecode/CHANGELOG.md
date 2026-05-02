@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.66] - 2026-05-02
+
+### Changed
+- Support link now points to this repository's issue tracker instead of upstream
+- Added Credits section with fork attribution and note to not file issues upstream
+
 ## [1.2.65] - 2026-05-02
 
 ### Changed

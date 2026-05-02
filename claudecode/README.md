@@ -223,5 +223,9 @@ After changing configuration:
 
 ## Support
 
-- [GitHub Issues](https://github.com/robsonfelix/robsonfelix-hass-addons/issues)
+- [GitHub Issues](https://github.com/umrath/claude-hass-app/issues)
 - [Home Assistant Community](https://community.home-assistant.io/)
+
+## Credits
+
+This add-on is a fork of [Robson Felix's Home Assistant Add-ons](https://github.com/robsonfelix/robsonfelix-hass-addons). Please open issues in **this** repository, not upstream.

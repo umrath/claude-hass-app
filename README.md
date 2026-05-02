@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Home Assistant add-on for running Claude Code.
+Home Assistant add-on for running Claude Code. Forked from [Robson Felix's Home Assistant Add-ons](https://github.com/robsonfelix/robsonfelix-hass-addons).
 
 ## Installation
 
