@@ -33,8 +33,6 @@ map:
   - backup:ro
 options:
   enable_mcp: true
-  enable_playwright_mcp: false
-  playwright_cdp_host: ""
   terminal_font_size: 14
   terminal_theme: dark
   working_directory: /homeassistant
@@ -42,8 +40,6 @@ options:
   auto_update_claude: true
 schema:
   enable_mcp: bool
-  enable_playwright_mcp: bool
-  playwright_cdp_host: str?
   terminal_font_size: int(10,24)
   terminal_theme: list(dark|light)
   working_directory: str

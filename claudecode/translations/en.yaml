@@ -5,18 +5,6 @@ configuration:
       Enable the Home Assistant MCP server for direct entity and service
       interaction from Claude Code. Allows Claude to query states, call services,
       and interact with your smart home.
-  enable_playwright_mcp:
-    name: Enable Playwright MCP
-    description: >-
-      Enable the Playwright MCP server for browser automation. Requires the
-      "Playwright Browser" add-on to be installed and running. Allows Claude to
-      navigate web pages, fill forms, click elements, and take screenshots.
-  playwright_cdp_host:
-    name: Playwright CDP Host
-    description: >-
-      Hostname of the Playwright Browser add-on for CDP connection. Leave empty
-      for default (playwright-browser). If connection fails, check the Playwright
-      Browser container hostname (e.g., 1016f397-playwright-browser).
   terminal_font_size:
     name: Terminal Font Size
     description: >-

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.67] - 2026-05-02
+
+### Removed
+- `enable_playwright_mcp` and `playwright_cdp_host` configuration options
+- Playwright MCP runtime logic and build-time pre-cache step from Dockerfile
+
 ## [1.2.66] - 2026-05-02
 
 ### Changed

@@ -76,10 +76,6 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk del .build-deps \
     && apk add --no-cache libmodbus
 
-# Pre-cache Playwright MCP server (npx cache avoids /usr/local/bin/mcp conflict with hass-mcp)
-ENV NPM_CONFIG_CACHE=/root/.npm
-RUN npx @playwright/mcp --version || true
-
 # Install Home Assistant CLI (ha command)
 RUN case "${BUILD_ARCH}" in \
         amd64) HA_ARCH="amd64" ;; \
@@ -217,25 +213,12 @@ CMD ["/bin/bash", "-c", "\
   THEME=$(jq -r '.terminal_theme // \"dark\"' /data/options.json) && \
   SESSION_PERSIST=$(jq -r '.session_persistence // true' /data/options.json) && \
   ENABLE_MCP=$(jq -r '.enable_mcp // true' /data/options.json) && \
-  ENABLE_PLAYWRIGHT=$(jq -r '.enable_playwright_mcp // false' /data/options.json) && \
-  PLAYWRIGHT_HOST=$(jq -r '.playwright_cdp_host // \"\"' /data/options.json) && \
-  if [ -z \"$PLAYWRIGHT_HOST\" ] && [ \"$ENABLE_PLAYWRIGHT\" = \"true\" ]; then \
-    echo '[INFO] Auto-detecting Playwright Browser hostname...' && \
-    PLAYWRIGHT_HOST=$(curl -s -H \"Authorization: Bearer $SUPERVISOR_TOKEN\" http://supervisor/addons | jq -r '.data.addons[] | select(.slug | endswith(\"playwright-browser\") or endswith(\"_playwright-browser\")) | .hostname' | head -1) && \
-    if [ -n \"$PLAYWRIGHT_HOST\" ] && [ \"$PLAYWRIGHT_HOST\" != \"null\" ]; then \
-      echo \"[INFO] Found Playwright Browser: $PLAYWRIGHT_HOST\"; \
-    else \
-      echo '[WARN] Playwright Browser add-on not found, using default hostname'; \
-      PLAYWRIGHT_HOST=\"playwright-browser\"; \
-    fi; \
-  fi && \
   AUTO_UPDATE=$(jq -r '.auto_update_claude // true' /data/options.json) && \
   if [ \"$AUTO_UPDATE\" = \"true\" ]; then \
     echo '[INFO] Checking for Claude Code updates...' && \
     npm update -g @anthropic-ai/claude-code 2>/dev/null || echo '[WARN] Update check failed, continuing...'; \
   fi && \
   claude mcp remove homeassistant -s user 2>/dev/null || true && \
-  claude mcp remove playwright -s user 2>/dev/null || true && \
   if [ \"$ENABLE_MCP\" = \"true\" ]; then \
     claude mcp add-json homeassistant '{\"command\":\"hass-mcp\"}' -s user && \
     SETTINGS_FILE=/root/.claude/settings.json && \
@@ -245,13 +228,6 @@ CMD ["/bin/bash", "-c", "\
     echo '[INFO] Pre-authorized read-only MCP tools'; \
   else \
     echo '[INFO] MCP disabled'; \
-  fi && \
-  if [ \"$ENABLE_PLAYWRIGHT\" = \"true\" ]; then \
-    claude mcp add-json playwright \"{\\\"command\\\":\\\"npx\\\",\\\"args\\\":[\\\"--no-install\\\",\\\"@playwright/mcp\\\",\\\"--cdp-endpoint\\\",\\\"http://${PLAYWRIGHT_HOST}:9222\\\"]}\" -s user && \
-    echo \"[INFO] Playwright MCP enabled (CDP: http://${PLAYWRIGHT_HOST}:9222)\"; \
-    echo '[INFO] Make sure the Playwright Browser add-on is installed and running'; \
-  else \
-    echo '[INFO] Playwright MCP disabled'; \
   fi && \
   if [ \"$THEME\" = \"dark\" ]; then \
     COLORS='background=#1e1e2e,foreground=#cdd6f4,cursor=#f5e0dc'; \
