@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.68] - 2026-05-02
+
+### Fixed
+- Auto-update now uses `npm install -g @latest` instead of `npm update -g`, ensuring the actual latest version is always fetched
+- Updated Dockerfile labels and config.yaml URL to point to this repository instead of upstream
+
 ## [1.2.67] - 2026-05-02
 
 ### Removed

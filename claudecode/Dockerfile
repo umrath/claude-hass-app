@@ -2,10 +2,10 @@ ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
 # Labels
-LABEL maintainer="Robson Felix"
+LABEL maintainer="umrath"
 LABEL org.opencontainers.image.title="Claude Code for Home Assistant"
 LABEL org.opencontainers.image.description="Claude Code CLI with web terminal and HA integration"
-LABEL org.opencontainers.image.source="https://github.com/robsonfelix/robsonfelix-hass-addons"
+LABEL org.opencontainers.image.source="https://github.com/umrath/claude-hass-app"
 LABEL org.opencontainers.image.licenses="MIT"
 
 # Environment setup
@@ -216,7 +216,7 @@ CMD ["/bin/bash", "-c", "\
   AUTO_UPDATE=$(jq -r '.auto_update_claude // true' /data/options.json) && \
   if [ \"$AUTO_UPDATE\" = \"true\" ]; then \
     echo '[INFO] Checking for Claude Code updates...' && \
-    npm update -g @anthropic-ai/claude-code 2>/dev/null || echo '[WARN] Update check failed, continuing...'; \
+    npm install -g @anthropic-ai/claude-code@latest 2>/dev/null || echo '[WARN] Update check failed, continuing...'; \
   fi && \
   claude mcp remove homeassistant -s user 2>/dev/null || true && \
   if [ \"$ENABLE_MCP\" = \"true\" ]; then \
