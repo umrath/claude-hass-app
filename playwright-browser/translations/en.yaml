@@ -1,9 +1,0 @@
-configuration:
-  cdp_port:
-    name: CDP Port
-    description: >-
-      Port for the Chrome DevTools Protocol endpoint.
-      Other add-ons connect to this port for browser automation.
-
-network:
-  9222/tcp: Chrome DevTools Protocol (CDP) endpoint

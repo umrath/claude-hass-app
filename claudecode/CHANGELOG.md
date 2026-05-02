@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.65] - 2026-05-02
+
+### Changed
+- Removed auto-monocle and playwright-browser add-ons from repository
+- Cleaned up README, removing fork attribution
+
 ## [1.2.64] - 2026-05-02
 
 ### Changed

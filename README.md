@@ -1,9 +1,8 @@
-# Homeassistant Claude code app
-(Forked from Robson Felix's Home Assistant Add-ons)
+# Claude Code Add-on for Home Assistant
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Custom app for Home Assistant.
+Home Assistant add-on for running Claude Code.
 
 ## Installation
 
