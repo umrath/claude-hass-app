@@ -1,14 +1,11 @@
 name: Claude Code
 description: Run Claude Code AI assistant inside Home Assistant to create automations, debug issues, and manage your smart home configuration
-version: "1.2.71"
+version: "1.2.72"
 slug: claudecode
 url: https://github.com/umrath/claude-hass-app
 arch:
   - amd64
   - aarch64
-  - armv7
-  - armhf
-  - i386
 startup: application
 boot: auto
 init: true
@@ -21,7 +18,6 @@ homeassistant_api: true
 auth_api: true
 hassio_api: true
 hassio_role: manager
-uart: true
 full_access: false
 map:
   - homeassistant_config:rw

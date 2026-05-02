@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.72] - 2026-05-02
+
+### Changed
+- Removed deprecated architectures `armv7`, `armhf`, `i386` from `arch:` and `build.yaml` — HA Supervisor lists these as `ARCH_DEPRECATED` and logs warnings; only `amd64` and `aarch64` are still supported
+- Removed `uart: true` — unnecessary privilege that mapped all host serial devices into the container; not required by this add-on
+
 ## [1.2.71] - 2026-05-02
 
 ### Security
