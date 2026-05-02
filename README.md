@@ -8,7 +8,7 @@ Home Assistant add-on for running Claude Code. Forked from [Robson Felix's Home 
 
 [![Add Repository](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/umrath/claude-hass-app)
 
-Or manually: **Settings** → **Add-ons** → **Add-on Store** → **⋮** → **Repositories** → Add `https://github.com/umrath/claude-hass-app`
+Or manually: **Settings** → **Apps** → **Install Apps** → **⋮** → **Repositories** → Add `https://github.com/umrath/claude-hass-app`
 
 ## License
 
