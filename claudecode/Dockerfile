@@ -2,7 +2,7 @@ ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
 # Labels
-LABEL maintainer="umrath"
+LABEL maintainer="Thoralf Will"
 LABEL org.opencontainers.image.title="Claude Code for Home Assistant"
 LABEL org.opencontainers.image.description="Claude Code CLI with web terminal and HA integration"
 LABEL org.opencontainers.image.source="https://github.com/umrath/claude-hass-app"

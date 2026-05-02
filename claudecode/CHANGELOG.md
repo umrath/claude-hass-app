@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.69] - 2026-05-02
+
+### Changed
+- Maintainer name updated to "Thoralf Will" in repository.yaml and Dockerfile label
+
 ## [1.2.68] - 2026-05-02
 
 ### Fixed
