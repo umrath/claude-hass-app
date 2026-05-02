@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.70] - 2026-05-02
+
+### Changed
+- Fixed OCI source label in build.yaml to point to this repository
+- Added Thoralf Will copyright to LICENSE (keeping original Robson Felix copyright)
+
 ## [1.2.69] - 2026-05-02
 
 ### Changed
