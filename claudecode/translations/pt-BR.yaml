@@ -15,11 +15,6 @@ configuration:
     description: >-
       Tema de cores do terminal web.
       Escolha 'dark' para fundo escuro ou 'light' para fundo claro.
-  working_directory:
-    name: Diretório de Trabalho
-    description: >-
-      O diretório padrão quando o Claude Code inicia.
-      Use /homeassistant para acesso direto aos arquivos de configuração do HA.
   session_persistence:
     name: Persistência de Sessão
     description: >-

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.73] - 2026-05-02
+
+### Security
+- Fixed jq injection risk in `update_mcp_token()`: replaced direct `$SUPERVISOR_TOKEN` string interpolation in the jq filter with `--arg` to safely pass the token as a value
+- Pinned `mbpoll` build to release tag `v1.5.4` instead of unpinned HEAD — prevents supply chain attacks via a compromised upstream branch
+- Added SHA256 checksum verification for the `ttyd` static binary download
+- Removed `capability net_admin` from AppArmor profile — add-on only needs outbound HTTP, not host network interface/routing/firewall modification
+- Removed dead `/config/**` read-write rules from AppArmor — this path does not exist in the HA add-on environment
+- Removed unused `working_directory` config option from `config.yaml`, schema, and all translations — the container always starts in `/homeassistant`
+- Dropped dead code paths for removed architectures (armv7/armhf/i386) in ttyd and ha-CLI install steps
+
 ## [1.2.72] - 2026-05-02
 
 ### Changed

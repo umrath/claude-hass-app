@@ -4,7 +4,8 @@ profile claudecode flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # Capabilities needed for terminal and networking
-  capability net_admin,
+  # net_admin intentionally omitted — add-on only needs outbound HTTP,
+  # not network interface/routing/firewall modification
   capability net_raw,
   capability setgid,
   capability setuid,
@@ -57,9 +58,6 @@ profile claudecode flags=(attach_disconnected,mediate_deleted) {
   /backup/** r,
   /addon_configs/ r,
   /addon_configs/** rwk,
-  /config/ r,
-  /config/** rwk,
-
   # Claude Code and user home
   /root/ r,
   /root/** rwk,
