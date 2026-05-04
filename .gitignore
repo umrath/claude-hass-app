@@ -6,6 +6,12 @@
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
 Thumbs.db
 
 # Build artifacts
