@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.75] - 2026-05-04
+
+### Fixed
+- Fixed unescaped double quotes in jq filter inside Dockerfile CMD JSON array — broke JSON parsing, causing Docker to fall back to shell (ash) and spam error messages on every startup
+
 ## [1.2.74] - 2026-05-04
 
 ### Fixed
