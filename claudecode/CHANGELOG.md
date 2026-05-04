@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.76] - 2026-05-04
+
+### Fixed
+- Initialize `settings.json` with minimal structure before jq merge on first boot — previously the pre-authorization of read-only MCP tools silently failed if Claude Code hadn't yet created the file
+
 ## [1.2.75] - 2026-05-04
 
 ### Fixed

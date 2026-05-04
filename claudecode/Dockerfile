@@ -222,6 +222,7 @@ CMD ["/bin/bash", "-c", "\
   if [ \"$ENABLE_MCP\" = \"true\" ]; then \
     jq '.mcpServers.homeassistant = {\"command\": \"hass-mcp\"}' \"$CLAUDE_JSON\" > /tmp/claude.json.tmp && cat /tmp/claude.json.tmp > \"$CLAUDE_JSON\" && \
     SETTINGS_FILE=/root/.claude/settings.json && \
+    [ -f \"$SETTINGS_FILE\" ] || echo '{\"permissions\":{\"allow\":[],\"deny\":[]}}' > \"$SETTINGS_FILE\" && \
     ALLOWED_TOOLS='[\"mcp__homeassistant__get_version\",\"mcp__homeassistant__get_entity\",\"mcp__homeassistant__list_entities\",\"mcp__homeassistant__search_entities_tool\",\"mcp__homeassistant__domain_summary_tool\",\"mcp__homeassistant__list_automations\",\"mcp__homeassistant__get_history\",\"mcp__homeassistant__get_error_log\",\"Read(/homeassistant/**)\",\"Read(/config/**)\",\"Read(/share/**)\",\"Read(/media/**)\",\"Glob(/homeassistant/**)\",\"Glob(/config/**)\",\"Grep(/homeassistant/**)\",\"Grep(/config/**)\"]' && \
     jq --argjson tools \"$ALLOWED_TOOLS\" '.permissions.allow = ($tools + (.permissions.allow // []) | unique)' $SETTINGS_FILE > /tmp/settings.tmp && mv /tmp/settings.tmp $SETTINGS_FILE && \
     echo '[INFO] MCP configured with Home Assistant integration'; \
