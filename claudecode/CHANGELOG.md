@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.74] - 2026-05-04
+
+### Fixed
+- Replaced `claude mcp remove/add-json` subprocess calls at container startup with direct `jq` manipulation of `~/.claude.json` — the Node.js `claude` binary was being OOM-killed in memory-constrained environments, leaving MCP unconfigured
+- Fixed `update_mcp_token()` to write the HA supervisor token to `~/.claude.json` (where MCP config actually lives) instead of `settings.json` — the token was never being applied
+- Use `cat` instead of `mv` when rewriting `~/.claude.json` to preserve the symlink to the persistent volume
+
 ## [1.2.73] - 2026-05-02
 
 ### Security

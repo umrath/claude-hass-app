@@ -109,9 +109,10 @@ PS1='\[\033[1;36m\]claude-code\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ '
 
 # Function to update MCP token before starting Claude
 update_mcp_token() {
-  local SETTINGS_FILE=/root/.claude/settings.json
-  if [ -f "$SETTINGS_FILE" ] && [ -n "$SUPERVISOR_TOKEN" ]; then
-    jq --arg token "$SUPERVISOR_TOKEN" '.mcpServers.homeassistant.env.HASS_TOKEN = $token' "$SETTINGS_FILE" > /tmp/settings.tmp 2>/dev/null && mv /tmp/settings.tmp "$SETTINGS_FILE"
+  local CLAUDE_JSON=/root/.claude.json
+  if [ -f "$CLAUDE_JSON" ] && [ -n "$SUPERVISOR_TOKEN" ]; then
+    [ -s "$CLAUDE_JSON" ] || echo '{}' > "$CLAUDE_JSON"
+    jq --arg token "$SUPERVISOR_TOKEN" '.mcpServers.homeassistant.env.HASS_TOKEN = $token' "$CLAUDE_JSON" > /tmp/claude.json.tmp 2>/dev/null && cat /tmp/claude.json.tmp > "$CLAUDE_JSON"
   fi
 }
 
@@ -215,9 +216,11 @@ CMD ["/bin/bash", "-c", "\
     echo '[INFO] Checking for Claude Code updates...' && \
     npm install -g @anthropic-ai/claude-code@latest 2>/dev/null || echo '[WARN] Update check failed, continuing...'; \
   fi && \
-  claude mcp remove homeassistant -s user 2>/dev/null || true && \
+  CLAUDE_JSON=/root/.claude.json && \
+  { [ -s \"$CLAUDE_JSON\" ] || echo '{}' > \"$CLAUDE_JSON\"; } && \
+  jq 'del(.mcpServers.homeassistant)' \"$CLAUDE_JSON\" > /tmp/claude.json.tmp && cat /tmp/claude.json.tmp > \"$CLAUDE_JSON\" && \
   if [ \"$ENABLE_MCP\" = \"true\" ]; then \
-    claude mcp add-json homeassistant '{\"command\":\"hass-mcp\"}' -s user && \
+    jq '.mcpServers.homeassistant = {"command": "hass-mcp"}' \"$CLAUDE_JSON\" > /tmp/claude.json.tmp && cat /tmp/claude.json.tmp > \"$CLAUDE_JSON\" && \
     SETTINGS_FILE=/root/.claude/settings.json && \
     ALLOWED_TOOLS='[\"mcp__homeassistant__get_version\",\"mcp__homeassistant__get_entity\",\"mcp__homeassistant__list_entities\",\"mcp__homeassistant__search_entities_tool\",\"mcp__homeassistant__domain_summary_tool\",\"mcp__homeassistant__list_automations\",\"mcp__homeassistant__get_history\",\"mcp__homeassistant__get_error_log\",\"Read(/homeassistant/**)\",\"Read(/config/**)\",\"Read(/share/**)\",\"Read(/media/**)\",\"Glob(/homeassistant/**)\",\"Glob(/config/**)\",\"Grep(/homeassistant/**)\",\"Grep(/config/**)\"]' && \
     jq --argjson tools \"$ALLOWED_TOOLS\" '.permissions.allow = ($tools + (.permissions.allow // []) | unique)' $SETTINGS_FILE > /tmp/settings.tmp && mv /tmp/settings.tmp $SETTINGS_FILE && \
