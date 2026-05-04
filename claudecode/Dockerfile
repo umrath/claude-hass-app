@@ -121,6 +121,16 @@ alias c='update_mcp_token && claude'
 alias cc='update_mcp_token && claude --continue'
 alias ha-config='cd /homeassistant'
 alias ha-logs='cat /homeassistant/home-assistant.log 2>/dev/null || echo "Log not found"'
+
+# Welcome banner
+echo ""
+echo "  ┌──────────────────────────────────────────┐"
+echo "  │   Claude Code  ·  Home Assistant Add-on  │"
+echo "  └──────────────────────────────────────────┘"
+echo ""
+echo "    c    → new session"
+echo "    cc   → continue last session"
+echo ""
 EOF
 
 # Ensure .bashrc is sourced for login shells too

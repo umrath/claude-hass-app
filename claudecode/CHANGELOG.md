@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.78] - 2026-05-04
+
+### Added
+- Welcome banner on terminal open: shows available commands (`c` for new session, `cc` to continue)
+
 ## [1.2.77] - 2026-05-04
 
 ### Changed
