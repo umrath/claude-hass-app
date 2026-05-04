@@ -124,9 +124,9 @@ alias ha-logs='cat /homeassistant/home-assistant.log 2>/dev/null || echo "Log no
 
 # Welcome banner
 echo ""
-echo "  ┌──────────────────────────────────────────┐"
-echo "  │   Claude Code  ·  Home Assistant Add-on  │"
-echo "  └──────────────────────────────────────────┘"
+echo "  ┌───────────────────────────────────────┐"
+echo "  │   Claude Code  ·  Home Assistant App  │"
+echo "  └───────────────────────────────────────┘"
 echo ""
 echo "    c    → new session"
 echo "    cc   → continue last session"

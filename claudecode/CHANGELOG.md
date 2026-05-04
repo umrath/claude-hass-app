@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.79] - 2026-05-04
+
+### Fixed
+- Welcome banner: "Add-on" → "App"
+
 ## [1.2.78] - 2026-05-04
 
 ### Added
