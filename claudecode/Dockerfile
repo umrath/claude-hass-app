@@ -33,11 +33,10 @@ RUN apk add --no-cache \
     findutils \
     grep \
     sed \
-    gawk \
     ca-certificates \
     openssl \
     ripgrep \
-    p7zip \
+    unzip \
     socat \
     && update-ca-certificates
 

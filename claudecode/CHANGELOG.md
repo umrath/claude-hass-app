@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.77] - 2026-05-04
+
+### Changed
+- Replaced `p7zip` with `unzip` — covers the actual use case (extracting zip archives for custom components) without 7z/RAR overhead
+- Removed `gawk` — busybox awk is sufficient; gawk-specific features were never used
+
 ## [1.2.76] - 2026-05-04
 
 ### Fixed
