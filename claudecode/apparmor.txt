@@ -58,6 +58,7 @@ profile claudecode flags=(attach_disconnected,mediate_deleted) {
   /backup/** r,
   /addon_configs/ r,
   /addon_configs/** rwk,
+
   # Claude Code and user home
   /root/ r,
   /root/** rwk,

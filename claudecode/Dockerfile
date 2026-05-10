@@ -122,8 +122,9 @@ alias cc='update_mcp_token && claude --continue'
 alias ha-config='cd /homeassistant'
 alias ha-logs='cat /homeassistant/home-assistant.log 2>/dev/null || echo "Log not found"'
 
-# Welcome banner — only on first shell, not in nested tmux panes/windows
-if [ -z "$TMUX" ]; then
+# Welcome banner — once per shell session, not in child subshells
+if [ -z "$CLAUDE_BANNER_SHOWN" ]; then
+  export CLAUDE_BANNER_SHOWN=1
   echo ""
   echo "  ┌───────────────────────────────────────┐"
   echo "  │   Claude Code  ·  Home Assistant App  │"
@@ -157,7 +158,7 @@ CMD ["/bin/bash", "-c", "\
   PERSIST_DIR=/homeassistant/.claudecode && \
   mkdir -p $PERSIST_DIR/config /root/.config && \
   printf '%s\n' \
-    '# Claude Code - Home Assistant Add-on' \
+    '# Claude Code - Home Assistant App' \
     '' \
     '## Path Mapping' \
     '' \

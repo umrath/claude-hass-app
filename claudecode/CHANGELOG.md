@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.81] - 2026-05-11
+
+### Fixed
+- Welcome banner regression: `[ -z "$TMUX" ]` suppressed the banner in all tmux sessions (including the primary window); replaced with `$CLAUDE_BANNER_SHOWN` guard so the banner shows once per shell session regardless of tmux
+- `CLAUDE.md` title corrected from "Add-on" to "App"
+- AppArmor: restored missing blank line after `addon_configs` rules (cosmetic)
+
 ## [1.2.80] - 2026-05-10
 
 ### Fixed
