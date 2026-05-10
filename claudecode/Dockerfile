@@ -122,19 +122,21 @@ alias cc='update_mcp_token && claude --continue'
 alias ha-config='cd /homeassistant'
 alias ha-logs='cat /homeassistant/home-assistant.log 2>/dev/null || echo "Log not found"'
 
-# Welcome banner
-echo ""
-echo "  ┌───────────────────────────────────────┐"
-echo "  │   Claude Code  ·  Home Assistant App  │"
-echo "  └───────────────────────────────────────┘"
-echo ""
-echo "    c    → new session"
-echo "    cc   → continue last session"
-echo ""
+# Welcome banner — only on first shell, not in nested tmux panes/windows
+if [ -z "$TMUX" ]; then
+  echo ""
+  echo "  ┌───────────────────────────────────────┐"
+  echo "  │   Claude Code  ·  Home Assistant App  │"
+  echo "  └───────────────────────────────────────┘"
+  echo ""
+  echo "    c    → new session"
+  echo "    cc   → continue last session"
+  echo ""
+fi
 EOF
 
 # Ensure .bashrc is sourced for login shells too
-RUN echo 'source ~/.bashrc' > /root/.profile
+RUN echo 'source ~/.bashrc' >> /root/.profile
 
 # Set up PATH
 ENV PATH="/root/.local/bin:${PATH}"
@@ -143,7 +145,7 @@ ENV PATH="/root/.local/bin:${PATH}"
 WORKDIR /homeassistant
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
     CMD curl -sf http://localhost:7681/ || exit 1
 
 # Startup script that reads config and persists Claude auth

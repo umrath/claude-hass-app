@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.80] - 2026-05-10
+
+### Fixed
+- Health check `--start-period` raised from 10s to 120s — with `auto_update_claude` enabled, npm install can take 60–120 s, causing the container to be incorrectly marked unhealthy before ttyd even starts
+- Welcome banner now guarded with `[ -z "$TMUX" ]` — was shown in every new tmux pane/window; now only appears in the outer shell
+- `.profile` now appended (`>>`) instead of overwritten (`>`) — prevents losing any content the base image may already have in `.profile`
+
 ## [1.2.79] - 2026-05-04
 
 ### Fixed
