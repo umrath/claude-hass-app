@@ -1,3 +1,5 @@
+# WARNING: This repository is no longer maintained. Please use https://github.com/sproft/hass-claude# instead.
+
 # Claude Code Add-on for Home Assistant
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
